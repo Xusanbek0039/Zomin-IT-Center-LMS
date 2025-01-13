@@ -214,6 +214,21 @@ LOGOUT_REDIRECT_URL = "/"
 # Strip payment config
 STRIPE_SECRET_KEY = ""
 STRIPE_PUBLISHABLE_KEY = ""
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 # LOGGING
 # ------------------------------------------------------------------------------
