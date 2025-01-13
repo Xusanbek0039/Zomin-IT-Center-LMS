@@ -612,7 +612,7 @@ msgstr ""
 #: templates/course/program_add.html:26 templates/quiz/mcquestion_form.html:67
 #: templates/quiz/quiz_form.html:66 templates/result/add_score_for.html:38
 msgid "Save"
-msgstr ""
+msgstr "Saqlash"
 
 #: templates/accounts/add_student.html:13
 #: templates/accounts/edit_student.html:12
@@ -737,7 +737,7 @@ msgstr ""
 #: templates/navbar.html:29 templates/pdf/profile_single.html:41
 #: templates/pdf/profile_single.html:92
 msgid "Last login:"
-msgstr ""
+msgstr "So'ngi faollik:"
 
 #: templates/accounts/profile.html:30 templates/pdf/profile_single.html:42
 msgid "Role:"
