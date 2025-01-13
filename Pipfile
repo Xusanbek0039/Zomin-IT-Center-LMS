@@ -26,4 +26,4 @@ django-extensions = "==3.2.3"
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = ""
