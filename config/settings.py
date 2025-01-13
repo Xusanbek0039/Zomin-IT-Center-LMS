@@ -146,15 +146,14 @@ gettext = lambda s: s
 
 LANGUAGES = (
     ("en", gettext("English")),
-    ("fr", gettext("French")),
-    ("es", gettext("Spanish")),
+    ("uz", gettext("Uzbek")),
     ("ru", gettext("Russia")),
 )
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
-LANGUAGE_CODE = "en-us"
+MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
+LANGUAGE_CODE = "uz"
 
 TIME_ZONE = "UTC"
 
@@ -189,17 +188,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # -----------------------------------
 # E-mail configuration
 
-EMAIL_BACKEND = config(
-    "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
-)
-EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
-EMAIL_PORT = config("EMAIL_PORT", default=587)
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-EMAIL_FROM_ADDRESS = config("EMAIL_FROM_ADDRESS")
-EMAIL_USE_SSL = False
-
+# EMAIL_BACKEND = config(
+#     "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
+# )
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'itpark0071@gmail.com'
+EMAIL_HOST_PASSWORD = 'wixy huia etpe vstw'
+EMAIL_PORT = 587
+# EMAIL_USE_SSL = False
+EMAIL_USE_TLS =True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # crispy config
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

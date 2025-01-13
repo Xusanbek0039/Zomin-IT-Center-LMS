@@ -5,11 +5,10 @@ whitenoise==6.2.0  # https://github.com/evansd/whitenoise
 # Django
 # ------------------------------------------------------------------------------
 django==4.0.8  # pyup: < 4.1  # https://www.djangoproject.com/
-django-model-utils==4.3.1  # https://github.com/jazzband/django-model-utils
+django-model-utils  # https://github.com/jazzband/django-model-utils
 django-crispy-forms==1.14.0  # https://github.com/django-crispy-forms/django-crispy-forms
-crispy-bootstrap5==0.7  # https://github.com/django-crispy-forms/crispy-bootstrap5
-django-filter==23.5 # https://github.com/carltongibson/django-filter
-django-modeltranslation==0.18.11  # https://github.com/Buren/django-modeltranslation
+crispy-bootstrap5  # https://github.com/django-crispy-forms/crispy-bootstrap5
+django-filter # https://github.com/carltongibson/django-filter
 
 # Django REST Framework
 djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
@@ -29,3 +28,4 @@ python-decouple==3.8
 # Payments
 stripe==5.5.0
 gopay==2.0.1
+
