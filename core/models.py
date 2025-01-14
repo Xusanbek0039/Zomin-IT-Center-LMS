@@ -3,22 +3,22 @@ from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 
-NEWS = _("News")
-EVENTS = _("Event")
+NEWS = _("Yangilik")
+EVENTS = _("Voqea")
 
 POST = (
-    (NEWS, _("News")),
-    (EVENTS, _("Event")),
+    (NEWS, _("Yangilik")),
+    (EVENTS, _("Voqea")),
 )
 
-FIRST = _("First")
-SECOND = _("Second")
-THIRD = _("Third")
+FIRST = _("Birinchi")
+SECOND = _("Ikkikchi")
+THIRD = _("Uchinchi")
 
 SEMESTER = (
-    (FIRST, _("First")),
-    (SECOND, _("Second")),
-    (THIRD, _("Third")),
+    (FIRST, _("Birinchi")),
+    (SECOND, _("Ikkinchi")),
+    (THIRD, _("Uchinchi")),
 )
 
 

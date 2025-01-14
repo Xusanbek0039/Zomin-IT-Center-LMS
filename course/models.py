@@ -36,12 +36,12 @@ class Program(models.Model):
 @receiver(post_save, sender=Program)
 def log_program_save(sender, instance, created, **kwargs):
     verb = "created" if created else "updated"
-    ActivityLog.objects.create(message=_(f"The program '{instance}' has been {verb}."))
+    ActivityLog.objects.create(message=_(f"Yo'nalish '{instance}' edi {verb}."))
 
 
 @receiver(post_delete, sender=Program)
 def log_program_delete(sender, instance, **kwargs):
-    ActivityLog.objects.create(message=_(f"The program '{instance}' has been deleted."))
+    ActivityLog.objects.create(message=_(f"'{instance}' yo'nalishi o'chirildi."))
 
 
 class CourseManager(models.Manager):
@@ -94,12 +94,12 @@ def course_pre_save_receiver(sender, instance, **kwargs):
 @receiver(post_save, sender=Course)
 def log_course_save(sender, instance, created, **kwargs):
     verb = "created" if created else "updated"
-    ActivityLog.objects.create(message=_(f"The course '{instance}' has been {verb}."))
+    ActivityLog.objects.create(message=_(f"Bu kurs '{instance}' o'zgartirildi {verb}."))
 
 
 @receiver(post_delete, sender=Course)
 def log_course_delete(sender, instance, **kwargs):
-    ActivityLog.objects.create(message=_(f"The course '{instance}' has been deleted."))
+    ActivityLog.objects.create(message=_(f"Kurs '{instance}' o'chirildi"))
 
 
 class CourseAllocation(models.Model):
@@ -126,7 +126,7 @@ class Upload(models.Model):
     file = models.FileField(
         upload_to="course_files/",
         help_text=_(
-            "Valid Files: pdf, docx, doc, xls, xlsx, ppt, pptx, zip, rar, 7zip"
+            "Mumkin fayllar: pdf, docx, doc, xls, xlsx, ppt, pptx, zip, rar, 7zip"
         ),
         validators=[
             FileExtensionValidator(
@@ -174,11 +174,11 @@ class Upload(models.Model):
 def log_upload_save(sender, instance, created, **kwargs):
     if created:
         message = _(
-            f"The file '{instance.title}' has been uploaded to the course '{instance.course}'."
+            f"File nomi '{instance.title}' '{instance.course}' kursni uchun yuklandi."
         )
     else:
         message = _(
-            f"The file '{instance.title}' of the course '{instance.course}' has been updated."
+            f"File nomi '{instance.title}'  '{instance.course}' kursida muvafaqiyatli yangilandi."
         )
     ActivityLog.objects.create(message=message)
 
@@ -187,7 +187,7 @@ def log_upload_save(sender, instance, created, **kwargs):
 def log_upload_delete(sender, instance, **kwargs):
     ActivityLog.objects.create(
         message=_(
-            f"The file '{instance.title}' of the course '{instance.course}' has been deleted."
+            f"File nomi '{instance.title}'  '{instance.course}' kursidan o'chirildi"
         )
     )
 
@@ -198,7 +198,7 @@ class UploadVideo(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     video = models.FileField(
         upload_to="course_videos/",
-        help_text=_("Valid video formats: mp4, mkv, wmv, 3gp, f4v, avi, mp3"),
+        help_text=_("Mumkin bo'lgan video formatlar: mp4, mkv, wmv, 3gp, f4v, avi, mp3"),
         validators=[
             FileExtensionValidator(["mp4", "mkv", "wmv", "3gp", "f4v", "avi", "mp3"])
         ],
@@ -229,11 +229,11 @@ def video_pre_save_receiver(sender, instance, **kwargs):
 def log_uploadvideo_save(sender, instance, created, **kwargs):
     if created:
         message = _(
-            f"The video '{instance.title}' has been uploaded to the course '{instance.course}'."
+            f"Video nomi '{instance.title}'  '{instance.course}' kursi uchun yuklandi."
         )
     else:
         message = _(
-            f"The video '{instance.title}' of the course '{instance.course}' has been updated."
+            f"Video nomi '{instance.title}' '{instance.course}' kursidan yangilandi."
         )
     ActivityLog.objects.create(message=message)
 
@@ -242,7 +242,7 @@ def log_uploadvideo_save(sender, instance, created, **kwargs):
 def log_uploadvideo_delete(sender, instance, **kwargs):
     ActivityLog.objects.create(
         message=_(
-            f"The video '{instance.title}' of the course '{instance.course}' has been deleted."
+            f"Video nomi '{instance.title}' '{instance.course}' kursidan o'chirildi."
         )
     )
 

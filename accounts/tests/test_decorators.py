@@ -17,7 +17,7 @@ class AdminRequiredDecoratorTests(TestCase):
         self.factory = RequestFactory()
 
     def admin_view(self, request):
-        return HttpResponse("Admin View Content")
+        return HttpResponse("Admin Kontentni ko'rish")
 
     def test_admin_required_decorator_redirects(self):
         decorated_view = admin_required(self.admin_view)
@@ -45,7 +45,7 @@ class AdminRequiredDecoratorTests(TestCase):
         request.user = self.superuser
         response = decorated_view(request)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"Admin View Content")
+        self.assertEqual(response.content, b"Admin Kontentni ko'rish")
 
     def test_admin_redirect_decorator_return_correct_response(self):
         decorated_view = admin_required(self.admin_view)
@@ -70,7 +70,7 @@ class LecturerRequiredDecoratorTests(TestCase):
         self.factory = RequestFactory()
 
     def lecturer_view(self, request):
-        return HttpResponse("Lecturer View Content")
+        return HttpResponse("Ustoz Kontentni ko'rish")
 
     def test_lecturer_required_decorator_redirects(self):
         decorated_view = lecturer_required(self.lecturer_view)
@@ -105,7 +105,7 @@ class LecturerRequiredDecoratorTests(TestCase):
         response = decorated_view(request)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"Lecturer View Content")
+        self.assertEqual(response.content, b"Ustoz Kontentni ko'rish")
 
     def test_lecturer_redirect_decorator_return_correct_response(self):
         decorated_view = lecturer_required(self.lecturer_view)
@@ -132,7 +132,7 @@ class StudentRequiredDecoratorTests(TestCase):
         self.factory = RequestFactory()
 
     def student_view(self, request):
-        return HttpResponse("Student View Content")
+        return HttpResponse("O'quvchi Kontentni ko'rish")
 
     def test_student_required_decorator_redirects(self):
         decorated_view = student_required(self.student_view)
@@ -167,7 +167,7 @@ class StudentRequiredDecoratorTests(TestCase):
         response = decorated_view(request)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"Student View Content")
+        self.assertEqual(response.content, b"O'quvchi Kontentni ko'rish")
 
     def test_student_redirect_decorator_return_correct_response(self):
         decorated_view = student_required(self.student_view)

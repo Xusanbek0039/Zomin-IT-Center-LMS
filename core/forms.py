@@ -51,7 +51,7 @@ class SemesterForm(forms.ModelForm):
                 "class": "browser-default custom-select",
             },
         ),
-        label="is current semester ?",
+        label="joriy semestrmi?",
     )
     session = forms.ModelChoiceField(
         queryset=Session.objects.all(),

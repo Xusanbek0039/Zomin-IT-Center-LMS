@@ -11,31 +11,31 @@ from .validators import ASCIIUsernameValidator
 
 
 # LEVEL_COURSE = "Level course"
-BACHELOR_DEGREE = _("Bachelor")
-MASTER_DEGREE = _("Master")
+BACHELOR_DEGREE = _("Kundizgi")
+MASTER_DEGREE = _("Kechki")
 
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
-    (BACHELOR_DEGREE, _("Bachelor Degree")),
-    (MASTER_DEGREE, _("Master Degree")),
+    (BACHELOR_DEGREE, _("Kundizgi ")),
+    (MASTER_DEGREE, _("Kechki ")),
 )
 
-FATHER = _("Father")
-MOTHER = _("Mother")
-BROTHER = _("Brother")
-SISTER = _("Sister")
-GRAND_MOTHER = _("Grand mother")
-GRAND_FATHER = _("Grand father")
-OTHER = _("Other")
+FATHER = _("Ota")
+MOTHER = _("Ona")
+BROTHER = _("Aka")
+SISTER = _("Singil")
+GRAND_MOTHER = _("Katta opa")
+GRAND_FATHER = _("Katta aka")
+OTHER = _("Boshqa")
 
 RELATION_SHIP = (
-    (FATHER, _("Father")),
-    (MOTHER, _("Mother")),
-    (BROTHER, _("Brother")),
-    (SISTER, _("Sister")),
-    (GRAND_MOTHER, _("Grand mother")),
-    (GRAND_FATHER, _("Grand father")),
-    (OTHER, _("Other")),
+    (FATHER, _("Ota")),
+    (MOTHER, _("Ona")),
+    (BROTHER, _("Aka")),
+    (SISTER, _("Singil")),
+    (GRAND_MOTHER, _("Katta opa")),
+    (GRAND_FATHER, _("Katta aka")),
+    (OTHER, _("Boshqa")),
 )
 
 
@@ -51,7 +51,7 @@ class CustomUserManager(UserManager):
             )
             queryset = queryset.filter(
                 or_lookup
-            ).distinct()  # distinct() is often necessary with Q lookups
+            ).distinct()  
         return queryset
 
     def get_student_count(self):
@@ -64,7 +64,7 @@ class CustomUserManager(UserManager):
         return self.model.objects.filter(is_superuser=True).count()
 
 
-GENDERS = ((_("M"), _("Male")), (_("F"), _("Female")))
+GENDERS = ((_("M"), _("Erkak")), (_("F"), _("Ayol")))
 
 
 class User(AbstractUser):
@@ -100,13 +100,13 @@ class User(AbstractUser):
     @property
     def get_user_role(self):
         if self.is_superuser:
-            role = _("Admin")
+            role = _("Boshqaruvchi")
         elif self.is_student:
-            role = _("Student")
+            role = _("O'quvchi")
         elif self.is_lecturer:
-            role = _("Lecturer")
+            role = _("Ustoz")
         elif self.is_parent:
-            role = _("Parent")
+            role = _("Ota-ona")
 
         return role
 
@@ -178,10 +178,6 @@ class Student(models.Model):
 
 
 class Parent(models.Model):
-    """
-    Connect student with their parent, parents can
-    only view their connected students information
-    """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student = models.OneToOneField(Student, null=True, on_delete=models.SET_NULL)

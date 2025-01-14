@@ -7,7 +7,7 @@ from .utils import (
 
 def post_save_account_receiver(instance=None, created=False, *args, **kwargs):
     """
-    Send email notification
+    Elektron pochtaga tasdiqlashni yuborish
     """
     if created:
         if instance.is_student:

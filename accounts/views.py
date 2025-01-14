@@ -36,7 +36,7 @@ def render_to_pdf(template_name, context):
     template = render_to_string(template_name, context)
     pdf = pisa.CreatePDF(template, dest=response)
     if pdf.err:
-        return HttpResponse("We had some problems generating the PDF")
+        return HttpResponse("PDF yaratishda ba'zi muammolarga duch keldik")
     return response
 
 
@@ -56,10 +56,10 @@ def register(request):
         form = StudentAddForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Account created successfully.")
+            messages.success(request, "Hisob muvaffaqiyatli yaratildi.")
             return redirect("login")
         messages.error(
-            request, "Something is not correct, please fill all fields correctly."
+            request, "Nimadir noto‘g‘ri, barcha maydonlarni to‘g‘ri to‘ldiring."
         )
     else:
         form = StudentAddForm()
@@ -139,7 +139,7 @@ def profile_single(request, user_id):
         )
         context.update(
             {
-                "user_type": "Lecturer",
+                "user_type": "Ustoz",
                 "courses": courses,
             }
         )
@@ -150,13 +150,13 @@ def profile_single(request, user_id):
         )
         context.update(
             {
-                "user_type": "Student",
+                "user_type": "O'quvchi",
                 "courses": courses,
                 "student": student,
             }
         )
     else:
-        context["user_type"] = "Superuser"
+        context["user_type"] = "Boshqaruvchi"
 
     if request.GET.get("download_pdf"):
         return render_to_pdf("pdf/profile_single.html", context)
@@ -167,7 +167,7 @@ def profile_single(request, user_id):
 @login_required
 @admin_required
 def admin_panel(request):
-    return render(request, "setting/admin_panel.html", {"title": "Admin Panel"})
+    return render(request, "setting/admin_panel.html", {"title": "Boshqaruv paneli"})
 
 
 # ########################################################
@@ -181,9 +181,9 @@ def profile_update(request):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, "Your profile has been updated successfully.")
+            messages.success(request, "Profilingiz muvaffaqiyatli yangilandi.")
             return redirect("profile")
-        messages.error(request, "Please correct the error(s) below.")
+        messages.error(request, "Quyidagi xato(lar)ni tuzating.")
     else:
         form = ProfileUpdateForm(instance=request.user)
     return render(request, "setting/profile_info_change.html", {"form": form})
@@ -198,7 +198,7 @@ def change_password(request):
             update_session_auth_hash(request, user)
             messages.success(request, "Your password was successfully updated!")
             return redirect("profile")
-        messages.error(request, "Please correct the error(s) below.")
+        messages.error(request, "Quyidagi xato(lar)ni tuzating.")
     else:
         form = PasswordChangeForm(request.user)
     return render(request, "setting/password_change.html", {"form": form})
@@ -220,14 +220,14 @@ def staff_add_view(request):
             email = lecturer.email
             messages.success(
                 request,
-                f"Account for lecturer {full_name} has been created. "
-                f"An email with account credentials will be sent to {email} within a minute.",
+                f"Oʻqituvchi {full_name} uchun hisob yaratildi. "
+                f"Hisob maʼlumotlari bilan xat bir daqiqa ichida {email} manziliga yuboriladi. ",
             )
             return redirect("lecturer_list")
     else:
         form = StaffAddForm()
     return render(
-        request, "accounts/add_staff.html", {"title": "Add Lecturer", "form": form}
+        request, "accounts/add_staff.html", {"title": "Ustoz qo'shish ", "form": form}
     )
 
 
@@ -240,13 +240,13 @@ def edit_staff(request, pk):
         if form.is_valid():
             form.save()
             full_name = lecturer.get_full_name
-            messages.success(request, f"Lecturer {full_name} has been updated.")
+            messages.success(request, f"Oʻqituvchi {full_name} yangilandi.")
             return redirect("lecturer_list")
-        messages.error(request, "Please correct the error below.")
+        messages.error(request, "Quyidagi xatoni tuzating.")
     else:
         form = ProfileUpdateForm(instance=lecturer)
     return render(
-        request, "accounts/edit_lecturer.html", {"title": "Edit Lecturer", "form": form}
+        request, "accounts/edit_lecturer.html", {"title": "Ustoz taxrirlash", "form": form}
     )
 
 
@@ -259,7 +259,7 @@ class LecturerFilterView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Lecturers"
+        context["title"] = "Ustozlar"
         return context
 
 
@@ -275,7 +275,7 @@ def render_lecturer_pdf_list(request):
     html = template.render(context)
     pisa_status = pisa.CreatePDF(html, dest=response)
     if pisa_status.err:
-        return HttpResponse(f"We had some errors <pre>{html}</pre>")
+        return HttpResponse(f"Xatolar mavjud: <pre>{html}</pre>")
     return response
 
 
@@ -285,7 +285,7 @@ def delete_staff(request, pk):
     lecturer = get_object_or_404(User, is_lecturer=True, pk=pk)
     full_name = lecturer.get_full_name
     lecturer.delete()
-    messages.success(request, f"Lecturer {full_name} has been deleted.")
+    messages.success(request, f"Oʻqituvchi {full_name} oʻchirib tashlandi.")
     return redirect("lecturer_list")
 
 
@@ -305,15 +305,15 @@ def student_add_view(request):
             email = student.email
             messages.success(
                 request,
-                f"Account for {full_name} has been created. "
-                f"An email with account credentials will be sent to {email} within a minute.",
+                f"{full_name} uchun hisob yaratildi."
+                f"Hisob maʼlumotlari bilan xat bir daqiqa ichida {email} manziliga yuboriladi.",
             )
             return redirect("student_list")
-        messages.error(request, "Correct the error(s) below.")
+        messages.error(request, "Quyidagi xato(lar)ni tuzating.")
     else:
         form = StudentAddForm()
     return render(
-        request, "accounts/add_student.html", {"title": "Add Student", "form": form}
+        request, "accounts/add_student.html", {"title": "O'quvchi qo'shish ", "form": form}
     )
 
 
@@ -326,13 +326,13 @@ def edit_student(request, pk):
         if form.is_valid():
             form.save()
             full_name = student_user.get_full_name
-            messages.success(request, f"Student {full_name} has been updated.")
+            messages.success(request, f"O'quvchi {full_name} yangilandi.")
             return redirect("student_list")
-        messages.error(request, "Please correct the error below.")
+        messages.error(request, "Quyidagi xatoni tuzating.")
     else:
         form = ProfileUpdateForm(instance=student_user)
     return render(
-        request, "accounts/edit_student.html", {"title": "Edit Student", "form": form}
+        request, "accounts/edit_student.html", {"title": "O'quvchi taxrirlash", "form": form}
     )
 
 
@@ -345,7 +345,7 @@ class StudentListView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Students"
+        context["title"] = "O'quvchilar"
         return context
 
 
@@ -361,7 +361,7 @@ def render_student_pdf_list(request):
     html = template.render(context)
     pisa_status = pisa.CreatePDF(html, dest=response)
     if pisa_status.err:
-        return HttpResponse(f"We had some errors <pre>{html}</pre>")
+        return HttpResponse(f"Xatolik mavjud: <pre>{html}</pre>")
     return response
 
 
@@ -371,7 +371,7 @@ def delete_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
     full_name = student.student.get_full_name
     student.delete()
-    messages.success(request, f"Student {full_name} has been deleted.")
+    messages.success(request, f"{full_name} o'quvchi oʻchirib tashlandi.")
     return redirect("student_list")
 
 
@@ -385,15 +385,15 @@ def edit_student_program(request, pk):
         if form.is_valid():
             form.save()
             full_name = user.get_full_name
-            messages.success(request, f"{full_name}'s program has been updated.")
+            messages.success(request, f"{full_name} yo'nalishi yangilandi.")
             return redirect("profile_single", user_id=pk)
-        messages.error(request, "Please correct the error(s) below.")
+        messages.error(request, "Quyidagi xato(lar)ni tuzating.")
     else:
         form = ProgramUpdateForm(instance=student)
     return render(
         request,
         "accounts/edit_student_program.html",
-        {"title": "Edit Program", "form": form, "student": student},
+        {"title": "Yo'nalishni taxrirlash", "form": form, "student": student},
     )
 
 
@@ -409,5 +409,5 @@ class ParentAdd(CreateView):
     template_name = "accounts/parent_form.html"
 
     def form_valid(self, form):
-        messages.success(self.request, "Parent added successfully.")
+        messages.success(self.request, "Ota-ona muvaffaqiyatli qo‘shildi.")
         return super().form_valid(form)
