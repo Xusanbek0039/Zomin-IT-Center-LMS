@@ -154,7 +154,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LANGUAGE_CODE = "en"  # Standart tilni o'zbekcha qilib belgilang
+LANGUAGE_CODE = "uz"  # Standart tilni o'zbekcha qilib belgilang
 import os
 
 # Tarjima fayllari joylashgan katalog
@@ -162,7 +162,7 @@ LOCALE_PATHS = [
     BASE_DIR / "locale",  # Tarjimalar uchun katalog
 ]
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
+MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
 
 TIME_ZONE = "UTC"
 
