@@ -1,17 +1,17 @@
 {% block content %}
 {% load i18n %}
 
-<p class="title-1">{% trans 'Students' %}</p>
+<p class="title-1">{% trans 'O`quvchilar' %}</p>
 
 <div>
   <table class="table">
     <thead>
       <tr>
-        <th>{% trans 'ID No.' %}</th>
-        <th>{% trans 'Full Name' %}</th>
-        <th>{% trans 'Email' %}</th>
+        <th>{% trans 'Foydalanuvchi nomi' %}</th>
+        <th>{% trans 'Ism/Familiya' %}</th>
+        <th>{% trans 'Elektron pochta' %}</th>
         <th>{% trans 'Mob No.' %}</th>
-        <th>{% trans 'Program' %}</th>
+        <th>{% trans 'Yo`nalish' %}</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
       <tr>
         <td>
           <span class="text-danger">
-            {% trans 'No Lecturer(s).' %}
+            {% trans 'Ustoz tayinlanmagan.' %}
           </span>
         </td>
       </tr>

@@ -20,15 +20,15 @@ from course.models import Course
 from core.utils import unique_slug_generator
 
 CHOICE_ORDER_OPTIONS = (
-    ("content", _("Content")),
-    ("random", _("Random")),
-    ("none", _("None")),
+    ("content", _("Tarkib bilan")),
+    ("random", _("Aralash ")),
+    ("none", _("Nomalum")),
 )
 
 CATEGORY_OPTIONS = (
-    ("assignment", _("Assignment")),
-    ("exam", _("Exam")),
-    ("practice", _("Practice Quiz")),
+    ("assignment", _("Topshiriq")),
+    ("exam", _("Imtihon")),
+    ("practice", _("Amaliy viktorina")),
 )
 
 
@@ -48,49 +48,49 @@ class QuizManager(models.Manager):
 
 class Quiz(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    title = models.CharField(verbose_name=_("Title"), max_length=60)
+    title = models.CharField(verbose_name=_("Nom"), max_length=60)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField(
-        verbose_name=_("Description"),
+        verbose_name=_("Tavsif"),
         blank=True,
-        help_text=_("A detailed description of the quiz"),
+        help_text=_("Viktorinaning batafsil tavsifi"),
     )
     category = models.CharField(max_length=20, choices=CATEGORY_OPTIONS, blank=True)
     random_order = models.BooleanField(
         default=False,
-        verbose_name=_("Random Order"),
-        help_text=_("Display the questions in a random order or as they are set?"),
+        verbose_name=_("Tasodifiy"),
+        help_text=_("Savollarni tasodifiy tartibda yoki belgilangan tartibda ko'rsatingmi?"),
     )
     answers_at_end = models.BooleanField(
         default=False,
-        verbose_name=_("Answers at end"),
+        verbose_name=_("Javoblar oxirida"),
         help_text=_(
-            "Correct answer is NOT shown after question. Answers displayed at the end."
+            "To'g'ri javob savoldan keyin ko'rsatilmaydi. Javoblar oxirida ko'rsatiladi."
         ),
     )
     exam_paper = models.BooleanField(
         default=False,
-        verbose_name=_("Exam Paper"),
+        verbose_name=_("Imtihon qog'ozi"),
         help_text=_(
-            "If yes, the result of each attempt by a user will be stored. Necessary for marking."
+            "Ha bo'lsa, foydalanuvchining har bir urinish natijasi saqlanadi. Belgilash uchun zarur."
         ),
     )
     single_attempt = models.BooleanField(
         default=False,
-        verbose_name=_("Single Attempt"),
-        help_text=_("If yes, only one attempt by a user will be permitted."),
+        verbose_name=_("Yagona urinish"),
+        help_text=_("Ha bo'lsa, foydalanuvchining faqat bitta urinishiga ruxsat beriladi."),
     )
     pass_mark = models.SmallIntegerField(
         default=50,
-        verbose_name=_("Pass Mark"),
+        verbose_name=_("O'tish belgisi"),
         validators=[MaxValueValidator(100)],
-        help_text=_("Percentage required to pass exam."),
+        help_text=_("Imtihondan o'tish uchun talab qilinadigan foiz."),
     )
     draft = models.BooleanField(
         default=False,
-        verbose_name=_("Draft"),
+        verbose_name=_("Qoralama"),
         help_text=_(
-            "If yes, the quiz is not displayed in the quiz list and can only be taken by users who can edit quizzes."
+            "Ha bo'lsa, viktorina viktorina ro'yxatida ko'rsatilmaydi va uni faqat viktorinalarni tahrir qila oladigan foydalanuvchilar olishi mumkin."
         ),
     )
     timestamp = models.DateTimeField(auto_now=True)
@@ -98,8 +98,8 @@ class Quiz(models.Model):
     objects = QuizManager()
 
     class Meta:
-        verbose_name = _("Quiz")
-        verbose_name_plural = _("Quizzes")
+        verbose_name = _("Viktorina")
+        verbose_name_plural = _("Viktorinalar")
 
     def __str__(self):
         return self.title
@@ -109,7 +109,7 @@ class Quiz(models.Model):
             self.exam_paper = True
 
         if not (0 <= self.pass_mark <= 100):
-            raise ValidationError(_("Pass mark must be between 0 and 100."))
+            raise ValidationError(_("O'tish belgisi 0 dan 100 gacha bo'lishi kerak."))
 
         super().save(*args, **kwargs)
 
@@ -138,26 +138,26 @@ class ProgressManager(models.Manager):
 
 class Progress(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL, verbose_name=_("Foydalanuvchi"), on_delete=models.CASCADE
     )
     score = models.CharField(
         max_length=1024,
-        verbose_name=_("Score"),
+        verbose_name=_("Natija"),
         validators=[validate_comma_separated_integer_list],
     )
 
     objects = ProgressManager()
 
     class Meta:
-        verbose_name = _("User Progress")
-        verbose_name_plural = _("User progress records")
+        verbose_name = _("Foydalanuvchi yo'nalishi")
+        verbose_name_plural = _("Foydalanuvchi yo'nalishi natijasi")
 
     def list_all_cat_scores(self):
         return {}  # Implement as needed
 
     def update_score(self, question, score_to_add=0, possible_to_add=0):
         if not isinstance(score_to_add, int) or not isinstance(possible_to_add, int):
-            return _("Error"), _("Invalid score values.")
+            return _("Xatolik"), _("Ballar qiymatlari noto‘g‘ri.")
 
         to_find = re.escape(str(question.quiz)) + r",(?P<score>\d+),(?P<possible>\d+),"
         match = re.search(to_find, self.score, re.IGNORECASE)
@@ -196,7 +196,7 @@ class SittingManager(models.Manager):
         if not question_ids:
             raise ImproperlyConfigured(
                 _(
-                    "Question set of the quiz is empty. Please configure questions properly."
+                    "Viktorinaning savollar to'plami bo'sh. Iltimos, savollarni to'g'ri sozlang."
                 )
             )
 
@@ -234,40 +234,40 @@ class SittingManager(models.Manager):
 
 class Sitting(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL, verbose_name=_("Foydalanuvchi"), on_delete=models.CASCADE
     )
-    quiz = models.ForeignKey(Quiz, verbose_name=_("Quiz"), on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, verbose_name=_("Viktorena"), on_delete=models.CASCADE)
     course = models.ForeignKey(
-        Course, verbose_name=_("Course"), on_delete=models.CASCADE
+        Course, verbose_name=_("Kurs"), on_delete=models.CASCADE
     )
     question_order = models.CharField(
         max_length=1024,
-        verbose_name=_("Question Order"),
+        verbose_name=_("Savol berish tartibi"),
         validators=[validate_comma_separated_integer_list],
     )
     question_list = models.CharField(
         max_length=1024,
-        verbose_name=_("Question List"),
+        verbose_name=_("Savollar ro'yxati"),
         validators=[validate_comma_separated_integer_list],
     )
     incorrect_questions = models.CharField(
         max_length=1024,
         blank=True,
-        verbose_name=_("Incorrect questions"),
+        verbose_name=_("Noto'g'ri savollar"),
         validators=[validate_comma_separated_integer_list],
     )
-    current_score = models.IntegerField(verbose_name=_("Current Score"))
-    complete = models.BooleanField(default=False, verbose_name=_("Complete"))
+    current_score = models.IntegerField(verbose_name=_("Joriy ball"))
+    complete = models.BooleanField(default=False, verbose_name=_("Bajarildi"))
     user_answers = models.TextField(
-        blank=True, default="{}", verbose_name=_("User Answers")
+        blank=True, default="{}", verbose_name=_("Foydalanuvchi javoblari")
     )
-    start = models.DateTimeField(auto_now_add=True, verbose_name=_("Start"))
-    end = models.DateTimeField(null=True, blank=True, verbose_name=_("End"))
+    start = models.DateTimeField(auto_now_add=True, verbose_name=_("Boshlash"))
+    end = models.DateTimeField(null=True, blank=True, verbose_name=_("Tugatish"))
 
     objects = SittingManager()
 
     class Meta:
-        permissions = (("view_sittings", _("Can see completed exams.")),)
+        permissions = (("view_sittings", _("Tugallangan imtihonlarni ko'rish mumkin.")),)
 
     def get_first_question(self):
         if not self.question_list:
@@ -333,9 +333,9 @@ class Sitting(models.Model):
     @property
     def result_message(self):
         if self.check_if_passed:
-            return _("You have passed this quiz, congratulations!")
+            return _("Siz ushbu viktorinadan o'tdingiz, tabriklaymiz!")
         else:
-            return _("You failed this quiz, try again.")
+            return _("Bu testda muvaffaqiyatsiz boʻldingiz, qayta urinib koʻring.")
 
     def add_user_answer(self, question, guess):
         user_answers = json.loads(self.user_answers)
@@ -370,30 +370,30 @@ class Sitting(models.Model):
 
 
 class Question(models.Model):
-    quiz = models.ManyToManyField(Quiz, verbose_name=_("Quiz"), blank=True)
+    quiz = models.ManyToManyField(Quiz, verbose_name=_("Viktorina"), blank=True)
     figure = models.ImageField(
         upload_to="uploads/%Y/%m/%d",
         blank=True,
-        verbose_name=_("Figure"),
-        help_text=_("Add an image for the question if necessary."),
+        verbose_name=_("Rasm"),
+        help_text=_("Agar kerak bo'lsa, savol uchun rasm qo'shing."),
     )
     content = models.CharField(
         max_length=1000,
-        help_text=_("Enter the question text that you want displayed"),
-        verbose_name=_("Question"),
+        help_text=_("Ko'rsatilishini xohlagan savol matnini kiriting"),
+        verbose_name=_("Savol"),
     )
     explanation = models.TextField(
         max_length=2000,
         blank=True,
-        help_text=_("Explanation to be shown after the question has been answered."),
-        verbose_name=_("Explanation"),
+        help_text=_("Savolga javob berilgandan keyin tushuntirish ko'rsatiladi."),
+        verbose_name=_("Tushuntirish"),
     )
 
     objects = InheritanceManager()
 
     class Meta:
-        verbose_name = _("Question")
-        verbose_name_plural = _("Questions")
+        verbose_name = _("Savol")
+        verbose_name_plural = _("Savollar")
 
     def __str__(self):
         return self.content
@@ -405,14 +405,14 @@ class MCQuestion(Question):
         choices=CHOICE_ORDER_OPTIONS,
         blank=True,
         help_text=_(
-            "The order in which multiple-choice options are displayed to the user"
+            "Ko'p tanlovli variantlar foydalanuvchiga ko'rsatiladigan tartib"
         ),
-        verbose_name=_("Choice Order"),
+        verbose_name=_("Tanlov tartibi"),
     )
 
     class Meta:
-        verbose_name = _("Multiple Choice Question")
-        verbose_name_plural = _("Multiple Choice Questions")
+        verbose_name = _("Ko'p tanlovli savol")
+        verbose_name_plural = _("Ko'p tanlovli savollar")
 
     def check_if_correct(self, guess):
         try:
@@ -444,22 +444,22 @@ class MCQuestion(Question):
 
 class Choice(models.Model):
     question = models.ForeignKey(
-        MCQuestion, verbose_name=_("Question"), on_delete=models.CASCADE
+        MCQuestion, verbose_name=_("Savol"), on_delete=models.CASCADE
     )
     choice_text = models.CharField(
         max_length=1000,
-        help_text=_("Enter the choice text that you want displayed"),
-        verbose_name=_("Content"),
+        help_text=_("Ko'rsatmoqchi bo'lgan tanlov matnini kiriting"),
+        verbose_name=_("Tarkib"),
     )
     correct = models.BooleanField(
         default=False,
-        help_text=_("Is this a correct answer?"),
-        verbose_name=_("Correct"),
+        help_text=_("Bu to'g'ri javobmi?"),
+        verbose_name=_("To'g'ri"),
     )
 
     class Meta:
-        verbose_name = _("Choice")
-        verbose_name_plural = _("Choices")
+        verbose_name = _("Tanlov")
+        verbose_name_plural = _("Tanlovlar")
 
     def __str__(self):
         return self.choice_text
@@ -467,8 +467,8 @@ class Choice(models.Model):
 
 class EssayQuestion(Question):
     class Meta:
-        verbose_name = _("Essay Style Question")
-        verbose_name_plural = _("Essay Style Questions")
+        verbose_name = _("Insho uslubiga oid savol")
+        verbose_name_plural = _("Insho uslubiga oid savollar")
 
     def check_if_correct(self, guess):
         return False  # Needs manual grading

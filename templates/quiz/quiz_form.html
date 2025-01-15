@@ -6,16 +6,16 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'programs' %}">{% trans 'Programs' %}</a></li>
+        <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'programs' %}">{% trans 'Yo`nalish' %}</a></li>
         <li class="breadcrumb-item"><a href="{% url 'program_detail' course.program.id %}">{{ course.program }}</a></li>
         <li class="breadcrumb-item"><a href="{{ course.get_absolute_url }}">{{ course }}</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">{% trans 'Quizzes' %}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans 'Quiz Form' %}</li>
+        <li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">{% trans 'Viktorena' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Viktorena qo`shish' %}</li>
     </ol>
 </nav>
 
-<div class="title-1">{% trans 'Quiz form for' %} {{ course|truncatechars:15 }}</div>
+<div class="title-1"> {{ course|truncatechars:15 }} {% trans "yo'nalishi uchun viktorena" %}</div>
 <br><br>
 
 <div class="container">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary my-4" id="{% if form.is_valid %}btn-transition{% endif %}" type="submit">{% trans 'Save' %} &amp; {% trans 'Continue' %}</button>
+        <button class="btn btn-primary my-4" id="{% if form.is_valid %}btn-transition{% endif %}" type="submit">{% trans 'Saqlash' %} &amp; {% trans 'Davom etish' %}</button>
     </form>
 </div>
 

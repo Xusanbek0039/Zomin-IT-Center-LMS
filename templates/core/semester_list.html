@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{{ title }} | {% trans 'Learning management system' %} {% endblock title %}
+{% block title %}{{ title }} | {% trans 'IT Park Zomin' %} {% endblock title %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans 'Semester list' %}</li>
+      <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans 'Semesterlar ro`yxati' %}</li>
     </ol>
 </nav>
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-primary" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>{% trans 'Add New Semester' %}</a>
+    <a class="btn btn-primary" href="{% url 'add_semester' %}"><i class="fas fa-plus"></i>{% trans 'Semester qo`shish' %}</a>
 </div>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-calendar-alt"></i>{% trans 'Semester List' %}</div>
+<div class="title-1"><i class="fas fa-calendar-alt"></i>{% trans 'Semesterlar ro`yxati' %}</div>
 
 {% include 'snippets/messages.html' %}
 
@@ -27,11 +27,11 @@
             <tr>
                 <th>#</th>
                 <th> {% trans 'Semester' %} </th>
-                <th> {% trans 'Is Current semester' %} </th>
+                <th> {% trans 'Joriy semester' %} </th>
                 <th> {% trans 'Session' %} </th>
-                <th> {% trans 'Next Semester Begins' %} </th>
+                <th> {% trans 'Kelasi semester' %} </th>
                 {% if request.user.is_superuser %}
-                <th> {% trans 'Actions' %} </th>
+                <th> {% trans 'Qo`shimcha' %} </th>
                 {% endif %}
             </tr>
         </thead>
@@ -54,9 +54,9 @@
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="update-delete">
-                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="{% trans 'Edit' %}"><i
+                        <a href="{% url 'edit_semester' pk=semester.pk %}" class="update" title="{% trans 'Taxrirlash' %}"><i
                                 class="fas fa-pencil-alt"></i></a>
-                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="{% trans 'Delete' %}"><i
+                        <a href="{% url 'delete_semester' pk=semester.pk %}" class="delete" title="{% trans 'O`chirish' %}"><i
                                 class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
@@ -68,11 +68,11 @@
                 <td></td>
                 <td>
                     <span class="text-danger">
-                        {% trans 'No Semester.' %}
+                        {% trans 'Semester mavjud emas.' %}
                         {% if request.user.is_superuser %}
                         <a href="{% url 'add_semester' %}">
                             <i class="primary" style="font-size: 22px;">
-                                {% trans 'Add Semester Now.' %}
+                                {% trans 'Qo`shish.' %}
                             </i>
                             {% endif %}
                         </a>

@@ -31,8 +31,8 @@ class QuizAddForm(forms.ModelForm):
     questions = forms.ModelMultipleChoiceField(
         queryset=Question.objects.all().select_subclasses(),
         required=False,
-        label=_("Questions"),
-        widget=FilteredSelectMultiple(verbose_name=_("Questions"), is_stacked=False),
+        label=_("Viktorenalar"),
+        widget=FilteredSelectMultiple(verbose_name=_("Viktorena"), is_stacked=False),
     )
 
     def __init__(self, *args, **kwargs):
@@ -74,11 +74,11 @@ class MCQuestionFormSet(forms.BaseInlineFormSet):
             "choice_text" in form.cleaned_data.keys() for form in valid_forms
         ]
         if not all(valid_choices):
-            raise forms.ValidationError("You must add a valid choice name.")
+            raise forms.ValidationError("Yaroqli tanlov nomini kiritishingiz kerak.")
 
         # If all forms are deleted, raise a validation error
         if len(valid_forms) < 2:
-            raise forms.ValidationError("You must provide at least two choices.")
+            raise forms.ValidationError("Siz kamida ikkita variantni taqdim etishingiz kerak.")
 
         # Check if at least one of the valid forms is marked as correct
         correct_choices = [
@@ -86,10 +86,10 @@ class MCQuestionFormSet(forms.BaseInlineFormSet):
         ]
 
         if not any(correct_choices):
-            raise forms.ValidationError("One choice must be marked as correct.")
+            raise forms.ValidationError("Bitta tanlov to'g'ri deb belgilanishi kerak.")
 
         if correct_choices.count(True) > 1:
-            raise forms.ValidationError("Only one choice must be marked as correct.")
+            raise forms.ValidationError("Faqat bitta tanlov to'g'ri deb belgilanishi kerak.")
 
 
 MCQuestionFormSet = inlineformset_factory(

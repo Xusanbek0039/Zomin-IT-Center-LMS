@@ -11,8 +11,8 @@
             </td>
             <td class="info">
                 <p>{{ user.get_full_name|title }}</p>
-                <p><strong>{% trans 'Last login:' %}</strong> {{ user.last_login|date }}</p>
-                <p><strong>{% trans 'Role:' %}</strong> {{ user.get_user_role }}</p>
+                <p><strong>{% trans "So'ngi faollik:" %}</strong> {{ user.last_login|date }}</p>
+                <p><strong>{% trans 'Tabaqa:' %}</strong> {{ user.get_user_role }}</p>
             </td>
         </tr>
     </table>
@@ -22,7 +22,7 @@
   <div class="card">
     <div class="card-body">
       {% if user.is_lecturer %}
-      <p class="h5">{% trans 'My Courses' %}</p>
+      <p class="h5">{% trans 'Mening kursim' %}</p>
       {% if courses %}
       <ul class="list-group">
         {% for course in courses %}
@@ -30,43 +30,43 @@
         {% endfor %}
       </ul>
       {% else %}
-      <div class="text-danger">{% trans 'No courses assigned!' %}</div>
+      <div class="text-danger">{% trans 'Xech qanday kursga tayinlanmagan.' %}</div>
       {% endif %}
       <hr class="my-0">
       {% endif %}
 
-      <p class="h5">{% trans 'Personal Info' %}</p>
+      <p class="h5">{% trans "Shaxsiy ma'lumotlar" %}</p>
       <div class="dashboard-description">
-        <p><strong>{% trans 'First Name:' %}</strong> {{ user.first_name|title }}</p>
-        <p><strong>{% trans 'Last Name:' %}</strong> {{ user.last_name|title }}</p>
-        <p><strong>{% trans 'ID No.:' %}</strong> {{ user.username }}</p>
+        <p><strong>{% trans 'Ism:' %}</strong> {{ user.first_name|title }}</p>
+        <p><strong>{% trans 'Familiya:' %}</strong> {{ user.last_name|title }}</p>
+        <p><strong>{% trans 'Foydalanuvchi nomi:' %}</strong> {{ user.username }}</p>
       </div>
 
       {% if user.is_student %}
       <hr>
-      <p class="h5">{% trans 'Applicant Info' %}</p>
+      <p class="h5">{% trans "O'quv bo'limi malumotlari" %}</p>
       <div class="dashboard-description">
-        <p><strong>{% trans 'School:' %}</strong>{% trans 'Hawas Preparatory School' %}</p>
-        <p><strong>{% trans 'Level:' %}</strong> {{ level.level }}</p>
+        <p><strong>{% trans "O'quv markaz:" %}</strong>{% trans 'IT Park Zomin filiali' %}</p>
+        <p><strong>{% trans 'Daraja:' %}</strong> {{ level.level }}</p>
       </div>
       {% endif %}
 
       <hr>
-      <p class="h5">{% trans 'Contact Info' %}</p>
+      <p class="h5">{% trans "Bog'lanish ma'lumotlar" %}</p>
       <div class="dashboard-description">
-        <p><strong>{% trans 'Email:' %}</strong> {{ user.email }}</p>
+        <p><strong>{% trans 'Elektron pochta:' %}</strong> {{ user.email }}</p>
         <p><strong>{% trans 'Tel No.:' %}</strong> {{ user.phone }}</p>
-        <p><strong>{% trans 'Address/city:' %}</strong> {{ user.address }}</p>
+        <p><strong>{% trans 'Manzil/joylashuv:' %}</strong> {{ user.address }}</p>
       </div>
 
       <hr>
-      <p class="h5">{% trans 'Important Dates' %}</p>
+      <p class="h5">{% trans "Tizim ma'lumotlari" %}</p>
       <div class="dashboard-description">
-        <p><strong>{% trans 'Last login:' %}</strong> {{ user.last_login }}</p>
+        <p><strong>{% trans "So'ngi faollik" %}</strong> {{ user.last_login }}</p>
         {% if current_semester and current_session %}
-        <p><strong>{% trans 'Academic Year:' %}</strong> {{ current_semester }} {% trans 'Semester' %} {{ current_session }}</p>
+        <p><strong>{% trans "O'quv vaqti:" %}</strong> {{ current_semester }} {% trans 'Semester' %} {{ current_session }}</p>
         {% endif %}
-        <p><strong>{% trans 'Registered Date:' %}</strong> {{ user.date_joined|date }}</p>
+        <p><strong>{% trans "Ro'yxatga olingan" %}</strong> {{ user.date_joined|date }}</p>
       </div>
     </div>
   </div>

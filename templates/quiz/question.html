@@ -2,18 +2,18 @@
 {% load i18n%}
 
 
-{% block title %} {{ quiz.title }} | {% trans 'Learning management system' %} {% endblock %}
+{% block title %} {{ quiz.title }} | {% trans 'IT Park Zomin' %} {% endblock %}
 {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-		<li class="breadcrumb-item"><a href="{% url 'programs' %}">Programs</a></li>
+		<li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'programs' %}">Yo'nalish</a></li>
 		<li class="breadcrumb-item"><a href="{% url 'program_detail' course.program.id %}">{{ course.program }}</a></li>
 		<li class="breadcrumb-item"><a href="{{ course.get_absolute_url }}">{{ course }}</a></li>
-		<li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">{% trans 'Quizzes' %}</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'quiz_index' course.slug %}">{% trans 'Viktorena' %}</a></li>
 		<li class="breadcrumb-item active" aria-current="page">{{ quiz.title|title }}</li>
 	</ol>
 </nav>
@@ -25,7 +25,7 @@
 
 	{% if previous.answers %}
 
-	<p class="muted"><small>{% trans "The previous question" %}:</small></p>
+	<p class="muted"><small>{% trans "Oldingi savol" %}:</small></p>
 	<p>{{ previous.previous_question }}</p>
 
 	{% if previous.previous_outcome %}
@@ -34,7 +34,7 @@
 		<div class="alert alert-warning">
 	{% endif %}
 		<p class="mb-0"><small>
-			{% trans "Your answer was" %} </small>
+			{% trans "Sizning javobingiz edi" %} </small>
 			<strong>
 			{{ previous.previous_outcome|yesno:"correct,incorrect" }}
 			</strong>
@@ -50,7 +50,7 @@
                 {% if answer.correct %}
                   <tr class="success">
                     <td>{{ answer }}</td>
-                  <td class="text-success"><strong>{% trans "This is the correct answer" %}</strong></td>
+                  <td class="text-success"><strong>{% trans "Bu to'g'ri javob" %}</strong></td>
 				  </tr>
                 {% else %}
                   <tr>
@@ -58,7 +58,7 @@
                     <td>
                     {% if previous.question_type.MCQuestion %}
                       {% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
-                        {% trans "This was your answer." %}
+                        {% trans "Bu sizning javobingiz edi." %}
                       {% endif %}
                     {% endif %}
                     </td>
@@ -70,19 +70,19 @@
 
           {% if user_was_incorrect %}
             <div class="text-danger">
-              <strong>{% trans "You answered the above question incorrectly" %}</strong>
+              <strong>{% trans "Siz yuqoridagi savolga noto'g'ri javob berdingiz" %}</strong>
             </div>
           {% endif %}
 
         {% endif %}
 		
 
-        <p><strong>{% trans "Explanation" %}:</strong></p>
+        <p><strong>{% trans "Tushuntirish" %}:</strong></p>
         <p class="p-2" style="background-color: #fcf8e3;">
           {% if previous.previous_question.explanation %}
             {{ previous.previous_question.explanation }}
           {% else %}
-            {% trans "No explanation set to this question." %}
+            {% trans "Bu savolga hech qanday tushuntirish berilmagan." %}
           {% endif %}
 		</p>
 		
@@ -105,17 +105,19 @@
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h1 class="modal-title fs-5" id="instractionModalLabel">{% trans 'Quiz instractions' %}</h1>
-			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  <h1 class="modal-title fs-5" id="instractionModalLabel" style="color: red;">{% trans 'Ogoxlantirish' %}</h1>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Orqaga"></button>
 			</div>
 			<div class="modal-body">
 				{% blocktrans %} 
-				You can't go back to the previous question after you submit it, 
-				so double check your answer before proceeding to the next one!
+				Siz ushbu viktorenani boshlashdan oldin iltimos a'loqa tizimi nozosligi bo'lmasligini oldini oling!
+				A'loqa tizimi nozosligi viktorenada javoblarni belgilash vaqtida ro'y bersa tizim sizni shu joyni o'zida viktorenadan bekor qiladi!
+				Tizim admini sifatida viktorenada omad tilayman!
+				Agar hammasi yaxshi bo'lsa 'Davom etish' tugmasini bosing.
 				{% endblocktrans %}
 			</div>
 			<div class="modal-footer">
-			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{% trans 'Understood' %}</button>
+			  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{% trans 'Davom etish' %}</button>
 			</div>
 		  </div>
 		</div>
@@ -124,12 +126,12 @@
 
 	{% if progress %}
 	<div class="text-light rounded small px-2 bg-danger" style="float: right;">
-	{% trans "Question" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
+	{% trans "Savollar" %} {{ progress.0|add:1 }} {% trans "siz" %} {{ progress.1 }}{% trans "-dasiz" %}  
 	</div>
 	{% endif %}
 
 	<p>
-		<small class="muted">{% trans "Quiz category" %}:</small>
+		<small class="muted">{% trans "Viktorena " %}:</small>
 		<strong>{{ quiz.category }}</strong>
 	</p>
 
@@ -155,7 +157,7 @@
 
 				</ul>
 				<br>
-				<input type="submit" value="Check" class="btn btn-large btn-block btn-primary" />
+				<input type="submit" value="Davom etish" class="btn btn-large btn-block btn-primary" />
 				<!-- <input type="submit" value={% trans "Previous" %} class="btn btn-large btn-block btn-outline-primary" > -->
 			</form>
 		</div>

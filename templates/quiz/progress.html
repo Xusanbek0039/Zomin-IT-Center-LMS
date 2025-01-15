@@ -1,32 +1,32 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %} {% trans "Progress Page" %} | {% trans 'Learning management system' %} {% endblock %}
-{% block description %} {% trans "User Progress Page" %} {% endblock %}
+{% block title %} {% trans "Yo'nalish saxifasi " %} | {% trans 'IT Park Zomin' %} {% endblock %}
+{% block description %} {% trans "Foydalanuvchi taraqqiyot sahifasi" %} {% endblock %}
 
 {% block content %}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{% trans 'Progress Page' %}</li>
+        <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Yo`nalish' %}</li>
     </ol>
 </nav>
 
-<p class="title-1"><i class="fas fa-record-vinyl"></i>{% trans 'Quiz Progress Rec' %}</p>
+<p class="title-1"><i class="fas fa-record-vinyl"></i>{% trans 'Viktorena' %}</p>
 
   {% if cat_scores %}
 
-  <div class="header-title text-center">{% trans "Question Category Scores" %}</div>
+  <div class="header-title text-center">{% trans "Savollar turkumidagi ballar" %}</div>
   <div class="title-line"></div>
 
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
-		<th>{% trans "Category" %}</th>
-		<th>{% trans "Correctly answererd" %}</th>
-		<th>{% trans "Incorrect" %}</th>
+		<th>{% trans "Turkum" %}</th>
+		<th>{% trans "To'g'ri javob" %}</th>
+		<th>{% trans "Noto'g'ri" %}</th>
 		<th>%</th>
 	  </tr>
 	</thead>
@@ -53,25 +53,25 @@
 
   {% if exams %}
 
-  <div class="header-title-xl">{% trans "Previous exam papers" %}</div>
+  <div class="header-title-xl">{% trans "Oldingi imtihon hujjatlari" %}</div>
   <p class="lead fw-bold">
 	{% if request.user.is_superuser %}
-	{% trans "Student exam results" %}
+	{% trans "O`quvchi imtihon natijalari" %}
 	{% else %}
-	{% trans "Below are the results of exams that you have sat" %}
+	{% trans "Quyida siz topshirgan imtihon natijalari keltirilgan" %}
 	{% endif %}
   </p>
-  <div class="text-light bg-secondary mb-2 p-1">{% trans 'Total complete exams:' %} {{ exams_counter }}</div>
+  <div class="text-light bg-secondary mb-2 p-1">{% trans 'To`liq imtihonlar soni:' %} {{ exams_counter }}</div>
 <div class="table-responsive">
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
 		<th>#</th>
-		<th>{% trans "Quiz Title" %}</th>
-		<th>{% trans "Score" %}</th>
-		<th>{% trans "Possible Score" %}</th>
-		<th>{% trans 'Out of 100%' %}</th>
+		<th>{% trans "Viktorena nomi" %}</th>
+		<th>{% trans "Natija" %}</th>
+		<th>{% trans "Mumkin ball" %}</th>
+		<th>{% trans '100% dan' %}</th>
 	  </tr>
 	</thead>
 
@@ -96,7 +96,7 @@
   {% endif %}
   {% if not cat_scores and not exams %}
   <h4 class="text-center mt-5 py-5 text-muted">
-	  <i class="fa-regular fa-folder-open me-2"></i>{% trans 'Progress records will appear here' %}
+	  <i class="fa-regular fa-folder-open me-2"></i>{% trans 'Test natijalari bu yerda paydo bo`ladi.' %}
   </h4>
   {% endif %}
 

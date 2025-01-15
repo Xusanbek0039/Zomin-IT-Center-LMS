@@ -1,18 +1,18 @@
 {% block content %}
 {% load i18n %}
 
-<p class="title-1">{% trans 'Lecturers' %}</p>
+<p class="title-1">{% trans 'Ustozlar' %}</p>
 
-<div>
-  <table class="table">
+<divstyle="border: 1px; border-color: black;">
+  <table class="table" >
     <thead>
       <tr>
-        <th>#</th>
-        <th>{% trans 'ID No.' %}</th>
-        <th>{% trans 'Full Name' %}</th>
-        <th>{% trans 'Email' %}</th>
+        <th>T/r</th>
+        <th>{% trans 'Foydalanuvchi nomi' %}</th>
+        <th>{% trans 'Ism/familiya' %}</th>
+        <th>{% trans 'Elektron pochta' %}</th>
         <th>{% trans 'Mob No.' %}</th>
-        <th>{% trans 'Address/City' %}</th>
+        <th>{% trans 'Manzil/Joylashuv' %}</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
       <tr>
         <td>
           <span class="text-danger">
-            {% trans 'No Lecturer(s).' %}
+            {% trans 'Xech qanday ustoz mavjud emas.' %}
           </span>
         </td>
       </tr>
