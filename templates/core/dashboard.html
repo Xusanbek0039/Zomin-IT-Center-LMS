@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %} {% trans 'Dashboard' %} | {% trans 'Learning management system' %} {% endblock title %}
+{% block title %} {% trans 'Dashboard' %} | {% trans 'IT Park Zomin' %} {% endblock title %}
 {% load static %}
 
 {% block header %}
@@ -10,27 +10,27 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans 'Dashboard' %}</li>
+      <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans 'Tizim haqida' %}</li>
     </ol>
 </nav>
 
 {% include 'snippets/messages.html' %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-	<h1 class="title-1">{% trans 'Dashboard' %}</h1>
+	<h1 class="title-1">{% trans 'Tizim haqida' %}</h1>
 	<div class="dropdown">
-		<button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+		<!-- <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
 			aria-expanded="false">
 			<i class="fas fa-cog"></i>
-		</button>
-		<div class="dropdown-menu">
-			<h6 class="dropdown-header">{% trans 'Dashboard settings' %}</h6>
+		</button> -->
+		<!-- <div class="dropdown-menu">
+			<h6 class="dropdown-header">{% trans '' %}</h6>
 			<button class="dropdown-item active" type="button">{% trans 'Display grid' %}</button>
 			<button class="dropdown-item" type="button">{% trans 'Display table' %}</button>
 			<hr>
 			<button class="dropdown-item" type="button">{% trans 'Manage dashboard' %}</button>
-		</div>
+		</div> -->
 	</div>
 </div>
 
