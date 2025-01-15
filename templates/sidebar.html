@@ -45,7 +45,9 @@
 			{% if request.user.is_superuser %}
 			<li class="{% if request.path == admin_p %}active{% endif %}">
 				<a href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>{% trans 'Boshqaruv paneli' %}</a>
+				
 			</li>
+			
 			<li class="{% if request.path == lec %}active{% endif %}">
 				<a href="{% url 'lecturer_list' %}"><i class="fas fa-chalkboard-teacher"></i>{% trans 'Ustozlar' %}</a>
 			</li>
@@ -102,6 +104,7 @@
 			</li>
 			<li class="{% if request.path == ar %}active{% endif %}">
 				<a href="{% url 'ass_results' %}"><i class="fa fa-list-ol"></i> {% trans 'Oraliq natijalari' %}</a>
+				
 			</li>
 			<li class="{% if request.path == cr %}active{% endif %}">
 				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>{% trans 'Qo`shish' %} &amp; {% trans 'Dam olish kursi' %}</a>

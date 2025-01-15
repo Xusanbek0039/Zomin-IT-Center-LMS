@@ -20,19 +20,19 @@
 {% endif %}
 
 {% if request.user.is_lecturer %}
-    <div class="title-1">{% trans 'My Courses' %}</div>
+    <div class="title-1">{% trans 'Mening kursim' %}</div>
 {% endif %}
 
 {% include 'snippets/messages.html' %}
 
 {% if request.user.is_student %}
 <div class="table-responsive p-3 mt-3">
-    <h6 class="fw-bold text-primary"><u>{% trans 'Taken Courses:' %}</u></h6>
+    <h6 class="fw-bold text-primary"><u>{% trans 'Qabul qilingan:' %}</u></h6>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>T/r</th>
                     <th> {% trans 'Course Name' %} </th>
                     <th> {% trans 'Course Code' %} </th>
                     <th> {% trans 'Cr.Hr' %} </th>
@@ -53,7 +53,7 @@
                     <td>{{ course.course.year }}</td>
                     <td>{{ course.course.semester }}</td>
                     <th>
-                        {% if course.course.is_current_semester == False %}
+                        {% if course.course.is_current_semester  %}
                         <i class="fas fa-times-circle fa-1-5x danger"></i>
                         {% else %}
                         <i class="fas fa-check-circle"></i>
@@ -76,7 +76,7 @@
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>T/r</th>
                     <th> {% trans 'Course Name' %} </th>
                     <th> {% trans 'Course Code' %} </th>
                     <th> {% trans 'Cr.Hr' %} </th>
@@ -96,7 +96,7 @@
                     <td>{{ course.year }}</td>
                     <td>{{ course.semester }}</td>
                     <th>
-                        {% if course.is_current_semester == False %}
+                        {% if course.is_current_semester == true %}
                         <i class="fas fa-times-circle fa-1-5x danger"></i>
                         {% else %}
                         <i class="fas fa-check-circle"></i>
