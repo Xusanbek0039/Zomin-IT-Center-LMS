@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{{ title }} | {% trans 'Learning management system' %}{% endblock title %}
+{% block title %}{{ title }} | {% trans 'IT Park Zomin' %}{% endblock title %}
 
 {% block content %}
 
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans 'Students' %}</li>
+      <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans 'O`quvchilar' %}</li>
     </ol>
 </nav>
 
@@ -16,12 +16,12 @@
 
 {% if request.user.is_superuser %}
 <div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'add_student' %}"><i class="fas fa-plus"></i>{% trans 'Add Student' %}</a>
-    <a class="btn btn-sm btn-primary" target="_blank" href="{% url 'student_list_pdf' %}"><i class="fas fa-download"></i>{% trans 'Download pdf' %}</a> <!--new-->
+    <a class="btn btn-sm btn-primary" href="{% url 'add_student' %}"><i class="fas fa-plus"></i>{% trans 'O`quvchi qo`shish' %}</a>
+    <a class="btn btn-sm btn-primary" target="_blank" href="{% url 'student_list_pdf' %}"><i class="fas fa-download"></i>{% trans 'Yuklab olish .pdf' %}</a> <!--new-->
 </div>
 {% endif %}
 
-<div class="title-1"><i class="fas fa-user-graduate"></i>{% trans 'Students' %}</div>
+<div class="title-1"><i class="fas fa-user-graduate"></i>{% trans 'O`quvchilar' %}</div>
 <br>
 <br>
 
@@ -33,12 +33,12 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{% trans 'ID No.' %} </th>
-                <th> {% trans 'Full Name' %} </th>
-                <th> {% trans 'Email' %} </th>
-                <th> {% trans 'Program' %} </th>
+                <th>{% trans 'Foydalanuvchi nomi' %} </th>
+                <th> {% trans 'Ism/familiya' %} </th>
+                <th> {% trans 'Elektron pochta' %} </th>
+                <th> {% trans 'Yo`nalish' %} </th>
                 {% if request.user.is_superuser %}
-                <th> {% trans 'Action' %} </th>
+                <th> {% trans 'Qo`shimcha' %} </th>
                 {% endif %}
             </tr>
         </thead>
@@ -58,9 +58,9 @@
                             <i class="fa fa-ellipsis-vertical"></i>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'student_edit' student.student.pk %}"><i class="unstyled me-2 fas fa-edit"></i>{% trans 'Update' %}</a></li>
-                          <li><a class="dropdown-item" target="_blank" href="{% url 'profile_single' student.student.id %}?download_pdf=1"><i class="unstyled me-2 fas fa-download"></i>{% trans 'Download PDF' %}</a></li>
-                          <li><a class="dropdown-item text-danger" href="{% url 'student_delete' student.pk %}"><i class="unstyled me-2 fas fa-trash-alt"></i>{% trans 'Delete' %}</a></li>
+                          <li><a class="dropdown-item" href="{% url 'student_edit' student.student.pk %}"><i class="unstyled me-2 fas fa-edit"></i>{% trans 'Taxrirlash' %}</a></li>
+                          <li><a class="dropdown-item" target="_blank" href="{% url 'profile_single' student.student.id %}?download_pdf=1"><i class="unstyled me-2 fas fa-download"></i>{% trans 'Yuklab olish PDF' %}</a></li>
+                          <li><a class="dropdown-item text-danger" href="{% url 'student_delete' student.pk %}"><i class="unstyled me-2 fas fa-trash-alt"></i>{% trans 'O`chirish' %}</a></li>
                         </ul>
                       </div>
                 </td>
@@ -70,11 +70,11 @@
                 <tr>
                   <td colspan="6">
                   <span class="text-danger">
-                    {% trans 'No Student.' %}
+                    {% trans 'O`quvchi mavjud emas.' %}
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_student' %}">
-                    <i class="primary" style="font-size: 22px;">
-                        {% trans 'Add Student Now.' %}
+                    <i class="primary" style="font-size: 22px; color: rgb(3, 172, 0);">
+                        {% trans 'O`quvchi qo`shish.' %}
                     </i>
                     {% endif %}
                     </a>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% block title %}{{ title }} | IT Park Zomin{% endblock title %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -7,13 +7,13 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item"><a href="{% url 'student_list' %}">Students</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Update</li>
+      <li class="breadcrumb-item"><a href="/">Bosh saxifa</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'student_list' %}">O`quvchi</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Yangilash</li>
     </ol>
 </nav>
 
-<h4 class="fw-bold mb-3"><i class="fas fa-cog me-2"></i>Student Program Update Form</h4>
+<h4 class="fw-bold mb-3"><i class="fas fa-cog me-2"></i>O`quvchi yangilash anketasi</h4>
 
 {% include 'snippets/messages.html' %}
 
@@ -21,16 +21,16 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Program</p>
+                <p class="form-title">Yo'nalish</p>
 
                 <div class="card-body">
-                    <p>Change <a href="{{ student.student.get_absolute_url }}">{{ student.student.get_full_name }}'s</a> program</p>
+                    <p>O'zgartirish <a href="{{ student.student.get_absolute_url }}">{{ student.student.get_full_name }}'s</a> yo'nalish</p>
                     <hr>
                     {{ form.program|as_crispy_field }}
                 </div>
             </div>
         </div>
     </div>
-    <input class="btn btn-primary" type="submit" value="Save">
+    <input class="btn btn-primary" type="submit" value="Saqlash">
 </form>
 {% endblock content %}

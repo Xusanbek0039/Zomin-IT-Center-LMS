@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{{ title }} | {% trans 'Learning management system' %}{% endblock title %}
+{% block title %}{{ title }} | {% trans 'IT Park Zomin' %}{% endblock title %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -8,13 +8,13 @@
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
-      <li class="breadcrumb-item"><a href="{% url 'lecturer_list' %}">{% trans 'Lecturers' %}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{% trans 'Add' %}</li>
+      <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'lecturer_list' %}">{% trans 'Ustozlar' %}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% trans 'Qo`shish' %}</li>
     </ol>
 </nav>
 
-<h4 class="fw-bold mb-3"><i class="fas fa-chalkboard-teacher me-2"></i>{% trans 'Lecturer Add Form' %}</h4>
+<h4 class="fw-bold mb-3"><i class="fas fa-chalkboard-teacher me-2"></i>{% trans 'Ustoz qo`shish uchun anketa' %}</h4>
 
 {% include 'snippets/messages.html' %}
 
@@ -23,7 +23,7 @@
         
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">{% trans 'Personal Info' %}</p>
+                <p class="form-title">{% trans 'Shaxsiy ma`lumotlar' %}</p>
                 <div class="p-2">
                     {{ form.first_name|as_crispy_field }}
                     {{ form.last_name|as_crispy_field }}
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <input class="btn btn-primary" type="submit" value="{% trans 'Save' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Saqlash' %}">
 </form>
 
 {% endblock content %}
