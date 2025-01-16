@@ -107,8 +107,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "zomin_lms_baza",
+        "USER": "zomin_lms_baza_user",
+        "PASSWORD": "lzfGWKWOiolyIxUZAfL3u895RnMjrtPm",
+        "HOST": "dpg-cu2lrspu0jms73apm6b0-a.oregon-postgres.render.com",
+        "PORT": "5432",
     }
 }
 
