@@ -119,7 +119,7 @@ DATABASES = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#
+# https://docs.
 
 AUTH_PASSWORD_VALIDATORS = [
     {
