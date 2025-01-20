@@ -34,7 +34,7 @@ AUTH_USER_MODEL = "accounts.User"
 # Application definition
 
 DJANGO_APPS = [
-    "modeltranslation",  # Translation
+    "modeltranslation",  
     "jet.dashboard",
     "jet",
     "django.contrib.admin",
@@ -45,14 +45,12 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-# Third party apps
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_filters",
 ]
 
-# Custom apps
 PROJECT_APPS = [
     "core.apps.CoreConfig",
     "accounts.apps.AccountsConfig",
