@@ -75,7 +75,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # whitenoise to serve static files
+    "whitenoise.middleware.WhiteNoiseMiddleware",  
 ]
 
 ROOT_URLCONF = "config.urls"
