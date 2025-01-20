@@ -115,7 +115,7 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-# ettings/#std:setting-DEFAULT_AUTO_FIELD
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
