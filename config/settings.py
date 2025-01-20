@@ -118,8 +118,6 @@ DATABASES = {
 # ettings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Password validation
-# https://docs.
 
 AUTH_PASSWORD_VALIDATORS = [
     {
