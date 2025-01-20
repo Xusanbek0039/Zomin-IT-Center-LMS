@@ -63,7 +63,6 @@ PROJECT_APPS = [
     "payments.apps.PaymentsConfig",
 ]
 
-# Combine all apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
