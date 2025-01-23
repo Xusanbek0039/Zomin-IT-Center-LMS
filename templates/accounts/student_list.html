@@ -50,9 +50,6 @@
                 <td><a href="{% url 'profile_single' student.student.id %}">{{ student.student.get_full_name }}</a></td>
                 <td>{{ student.student.email }} </td>
                 <td>{{ student.program }}</td>
-
-
-                
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="dropdown">
