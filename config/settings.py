@@ -13,7 +13,11 @@ AUTH_USER_MODEL = "accounts.User"
 
 DJANGO_APPS = [
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "modeltranslation",  
+=======
+    "modeltranslation",  # Tarjimon
+>>>>>>> Stashed changes
 =======
     "modeltranslation",  # Tarjimon
 >>>>>>> Stashed changes
