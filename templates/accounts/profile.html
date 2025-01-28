@@ -3,9 +3,10 @@
 {% block title %} {{ title }} | {% trans 'IT Park Zomin' %}{% endblock title %}
 
 {% load static %}
-
-
 {% block content %}
+
+
+
 
 {% if user.is_authenticated %}
 
@@ -16,8 +17,10 @@
     </ol>
 </nav>
 
-{% include 'snippets/messages.html' %}
 
+
+
+{% include 'snippets/messages.html' %}
 <div class="row">
 
     <div class="col-md-3 mx-auto">
@@ -59,6 +62,9 @@
                 {% endif %} -->
     
                 {% if user.is_lecturer %}
+
+
+
                 <p class="fw-bold"><i class="fas fa-book-open"></i> {% trans 'Mening kursim' %}</p>
                 {% if courses %}
                 <ul>
@@ -71,6 +77,10 @@
                 {% endif %}
                 <hr>
                 {% endif %}
+
+
+
+                
     
                 <p class="fw-bold"><i class="me-2 fas fa-user"></i>{% trans 'Shaxsiy ma`lumotlar' %}</p>
                 <div class="dashboard-description">

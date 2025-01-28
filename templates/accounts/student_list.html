@@ -3,15 +3,12 @@
 {% block title %}{{ title }} | {% trans 'IT Park Zomin' %}{% endblock title %}
 
 {% block content %}
-
-
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/">{% trans 'Bosh saxifa' %}</a></li>
       <li class="breadcrumb-item active" aria-current="page">{% trans 'O`quvchilar' %}</li>
     </ol>
 </nav>
-
 <!-- <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> Students</div> -->
 
 {% if request.user.is_superuser %}
@@ -20,7 +17,6 @@
     <a class="btn btn-sm btn-primary" target="_blank" href="{% url 'student_list_pdf' %}"><i class="fas fa-download"></i>{% trans 'Yuklab olish .pdf' %}</a> <!--new-->
 </div>
 {% endif %}
-
 <div class="title-1"><i class="fas fa-user-graduate"></i>{% trans 'O`quvchilar' %}</div>
 <br>
 <br>
@@ -50,7 +46,6 @@
                 <td><a href="{% url 'profile_single' student.student.id %}">{{ student.student.get_full_name }}</a></td>
                 <td>{{ student.student.email }} </td>
                 <td>{{ student.program }}</td>
-
                 {% if request.user.is_superuser %}
                 <td>
                     <div class="dropdown">
