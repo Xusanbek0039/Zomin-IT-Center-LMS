@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "sdvsdv5dvd1v5d4sv2sd4v2sdvsd4v2sdv424"
 
 # SECURITY WARNING: don't run with debug turned on in production!
