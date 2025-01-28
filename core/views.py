@@ -8,9 +8,7 @@ from .forms import SessionForm, SemesterForm, NewsAndEventsForm
 from .models import NewsAndEvents, ActivityLog, Session, Semester
 
 
-# ########################################################
-# News & Events
-# ########################################################
+
 @login_required
 def home_view(request):
     items = NewsAndEvents.objects.all().order_by("-updated_date")
@@ -79,9 +77,6 @@ def delete_post(request, pk):
     return redirect("home")
 
 
-# ########################################################
-# Session
-# ########################################################
 @login_required
 @lecturer_required
 def session_list_view(request):
