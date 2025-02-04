@@ -73,12 +73,13 @@
 
 
 
-                
+
 
 
                 <p class="fw-bold"><i class="fas fa-book-open"></i> {% trans 'Mening kursim' %}</p>
                 {% if courses %}
                 <ul>
+                    
                     {% for course in courses %}
                     <li><a href="{{ course.get_absolute_url }}" class="text-primary">{{ course }}</a></li>
                     {% endfor %}
